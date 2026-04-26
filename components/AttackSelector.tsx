@@ -31,7 +31,7 @@ export default function AttackSelector({ selected, onChange, disabled }: AttackS
   const handleSelect = (id: AttackScenarioId) => { onChange(id); setIsOpen(false); };
 
   return (
-    <div className={`relative ${isOpen ? 'z-[80]' : 'z-10'}`}>
+    <div className="relative">
       <p className="text-xs font-mono text-slate-500 mb-2 uppercase tracking-widest">[ SELECT ATTACK VECTOR ]</p>
 
       {/* Trigger */}
@@ -61,7 +61,7 @@ export default function AttackSelector({ selected, onChange, disabled }: AttackS
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 z-[90] glass-panel rounded-lg overflow-hidden border border-cyan-500/10 max-h-80 overflow-y-auto">
+        <div className="mt-2 z-50 glass-panel rounded-lg border border-cyan-500/10 max-h-72 overflow-y-auto">
           {(Object.keys(ATTACK_SCENARIOS) as AttackScenarioId[]).map((id) => {
             const s = ATTACK_SCENARIOS[id];
             const Icon = ICONS[id];
@@ -84,8 +84,6 @@ export default function AttackSelector({ selected, onChange, disabled }: AttackS
           })}
         </div>
       )}
-
-      {isOpen && <div className="fixed inset-0 z-[70]" onClick={() => setIsOpen(false)} />}
 
       {/* Payload preview */}
       <div className="mt-3 glass-panel rounded p-3">

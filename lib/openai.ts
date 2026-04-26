@@ -5,26 +5,19 @@
 
 import OpenAI from 'openai';
 
-let openaiClient: OpenAI | null = null;
-
-/** Returns a singleton OpenAI client. Validates env at runtime (not import time). */
-export function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    throw new Error(
-      'OPENAI_API_KEY is not set. Add it to your environment variables.\nSee .env.example for instructions.'
-    );
-  }
-
-  if (!openaiClient) {
-    openaiClient = new OpenAI({ apiKey });
-  }
-
-  return openaiClient;
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error(
+    'OPENAI_API_KEY is not set. Add it to your .env.local file.\nSee .env.example for instructions.'
+  );
 }
 
+/** Singleton OpenAI client */
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 /** Model to use — override via OPENAI_MODEL env var */
-export const AI_MODEL = process.env.OPENAI_MODEL ?? 'gpt-4o-mini';
+export const AI_MODEL = process.env.OPENAI_MODEL ?? 'gpt-4.1-nano';
 
 /** Full structured response from the AI analysis engine */
 export interface ThreatAnalysisResult {

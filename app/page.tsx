@@ -194,7 +194,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-3 flex flex-col gap-3">
 
             {/* Attack selector */}
-            <div className="glass-panel-bright rounded-xl p-4 flex-shrink-0 relative z-30 overflow-visible">
+            <div className="glass-panel-bright rounded-xl p-4 flex-shrink-0">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1.5 h-4 rounded-full" style={{ backgroundColor: scenario.color }} />
                 <span className="font-display text-xs font-bold tracking-widest text-slate-400">ATTACK VECTOR</span>
